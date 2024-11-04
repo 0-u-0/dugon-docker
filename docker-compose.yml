@@ -1,0 +1,20 @@
+version: '3'
+services:
+  nats:
+    image: nats:scratch
+    command: "--auth testdugon"
+    ports:
+      - 4222:4222
+  media:
+    image: dugon/media:latest
+    volumes:
+      - ./media/config.js:/code/config.js
+    network_mode: host
+  signal:
+    image: dugon/signal:latest
+    volumes:
+      - ./signal/config.toml:/config.toml
+      - /root/.acme.sh/dugon.one/fullchain.cer:/fullchain.pem
+      - /root/.acme.sh/dugon.one/dugon.one.key:/privkey.pem
+    ports:
+      - 8800:8800
