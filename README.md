@@ -1,1 +1,1 @@
-# dugon-quickstart-docker
+# dugon-docker
